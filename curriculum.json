@@ -1,0 +1,214 @@
+{
+  "curriculum": {
+    "1": {
+      "title": "Introduction to TCP/IP & OSI Model",
+      "category": "Networking",
+      "concept": "Networks talk using layers. The OSI model has 7 layers, but the practical internet uses TCP/IP (4 layers: Link, Internet, Transport, Application). Understanding how data travels from your browser (Application) to the cables (Link) is key to analyzing network traffic.",
+      "study_material": "Search: 'OSI Model vs TCP IP Model' or watch 'Professor Messer Network+ OSI Model'.",
+      "practical_challenge": "Open your Mac Terminal and run: `ping -c 4 google.com`. Observe the output. Note the IP address returned for Google. You just sent ICMP Echo Requests (Network Layer) and received replies!"
+    },
+    "2": {
+      "title": "IP Addresses & Subnetting Basics",
+      "category": "Networking",
+      "concept": "Every machine on a network needs an IP address (IPv4 is written as 4 numbers like 192.168.1.1). Subnet masks (like 255.255.255.0 or /24) determine which part of the address represents your network, and which part represents your specific device (host).",
+      "study_material": "Search: 'How IPv4 Subnetting Works' or watch 'Professor Messer IPv4 addresses'.",
+      "practical_challenge": "In your Terminal, run: `ifconfig`. Look for your active network interface (usually `en0` for Wi-Fi) and find your local IP address (listed next to `inet`) and netmask. What is your subnet?"
+    },
+    "3": {
+      "title": "Understanding Network Ports & Protocols",
+      "category": "Networking",
+      "concept": "If an IP address is a building, ports are the doors. Ports range from 0 to 65535. Standard services use well-known ports: HTTP (80), HTTPS (443), SSH (22), DNS (53), FTP (21). Hackers scan ports to find out what services are running.",
+      "study_material": "Search: 'Well known network ports list' or watch 'Professor Messer TCP and UDP ports'.",
+      "practical_challenge": "Run this command in Terminal to see active network connections on your Mac: `netstat -an | grep LISTEN`. Look at the local addresses (e.g., `*.80` or `*.22`). What ports is your computer listening on?"
+    },
+    "4": {
+      "title": "DNS (Domain Name System) Deep Dive",
+      "category": "Networking",
+      "concept": "DNS is the phonebook of the Internet. It translates human-friendly domains (google.com) into machine-friendly IP addresses. Types of DNS records include A (IPv4), AAAA (IPv6), MX (Mail), and TXT (metadata). DNS poisoning is a common hack to redirect users to fake sites.",
+      "study_material": "Search: 'How DNS Works' or watch 'DNS record types explained'.",
+      "practical_challenge": "Use the DNS query tool in your Terminal. Run: `nslookup google.com` and `nslookup -type=MX google.com`. Observe the IP addresses and mail servers returned."
+    },
+    "5": {
+      "title": "HTTP & HTTPS Protocols",
+      "category": "Networking",
+      "concept": "HTTP (Hypertext Transfer Protocol) is how web browsers request web pages. It uses Methods (GET, POST) and Status Codes (200 OK, 404 Not Found, 500 Server Error). HTTPS encrypts this traffic using TLS/SSL so interceptors cannot read your passwords.",
+      "study_material": "Search: 'HTTP request response structure' or watch 'How HTTPS works TLS handshake'.",
+      "practical_challenge": "Use curl to see HTTP response headers. Run: `curl -I https://www.google.com`. Look at the HTTP version, status code, and headers like `Content-Type` and `Server`."
+    },
+    "6": {
+      "title": "TCP Three-Way Handshake",
+      "category": "Networking",
+      "concept": "TCP is a connection-oriented protocol. Before sending data, it establishes a reliable session using a 3-way handshake: SYN (Synchronize), SYN-ACK (Synchronize-Acknowledge), and ACK (Acknowledge). Hackers use 'SYN Scans' to check if ports are open without completing the handshake.",
+      "study_material": "Search: 'TCP 3-way handshake animation' or watch 'Professor Messer TCP vs UDP'.",
+      "practical_challenge": "Think about this: If a firewall blocks a port, what flag will the server return when you send a SYN? (Answer: RST (Reset) or it will drop the packet entirely, causing a timeout)."
+    },
+    "7": {
+      "title": "Introduction to Packet Sniffing (Wireshark)",
+      "category": "Networking",
+      "concept": "A packet sniffer captures raw network traffic as it travels through the air or cables. Wireshark is the industry-standard GUI tool for packet analysis. Security analysts use it to find unencrypted passwords, malware activity, or network bottlenecks.",
+      "study_material": "Search: 'Wireshark tutorial for beginners' or watch a video on capturing packets.",
+      "practical_challenge": "Read about packet filtering. In Wireshark, if you only want to see HTTPS traffic, you use the display filter: `tcp.port == 443`. If you only want DNS, you use `udp.port == 53`."
+    },
+    "8": {
+      "title": "DHCP (Dynamic Host Configuration Protocol)",
+      "category": "Networking",
+      "concept": "When you connect to Wi-Fi, you don't manually type an IP address. DHCP automatically assigns an IP address, gateway, subnet mask, and DNS server. It works via the DORA process: Discover, Offer, Request, Acknowledge.",
+      "study_material": "Search: 'DHCP DORA process' or watch 'Professor Messer DHCP'.",
+      "practical_challenge": "Look at your system network preferences or run `ipconfig getpacket en0` in Terminal to see details about the DHCP offer your router gave you."
+    },
+    "9": {
+      "title": "Introduction to Nmap (Network Mapper)",
+      "category": "Networking",
+      "concept": "Nmap is the world's most popular security tool. It sends custom network packets to target IPs, listens for replies, and determines which ports are open, what operating system is running, and what services are active.",
+      "study_material": "Search: 'Nmap cheat sheet' or watch 'How to use Nmap for beginners'.",
+      "practical_challenge": "Nmap has a public test server. If you have nmap installed (or just look at the command syntax), you run: `nmap -F scanme.nmap.org`. The `-F` flag scans the top 100 most common ports quickly."
+    },
+    "10": {
+      "title": "NAT (Network Address Translation) & Gateways",
+      "category": "Networking",
+      "concept": "Your home router has one public IP address, but you have many devices. NAT translates your private local IPs (like 192.168.1.5) to your router's public IP when sending requests to the Internet, keeping track of which device gets which reply.",
+      "study_material": "Search: 'NAT explained private vs public IP' or watch 'Professor Messer NAT'.",
+      "practical_challenge": "Run: `curl ifconfig.me` in your Terminal. Compare the output (your public IP) with your local IP from Day 2. Notice how they are completely different!"
+    },
+    "11": {
+      "title": "Linux Terminal Navigation",
+      "category": "Linux",
+      "concept": "Linux is the foundation of hacking (Kali, Parrot OS). You must master the command line. Basic navigation commands: `pwd` (print working directory), `ls` (list files), `cd` (change directory), `mkdir` (create directory).",
+      "study_material": "Search: 'Basic Linux commands cheat sheet' or watch a Linux CLI tutorial.",
+      "practical_challenge": "Create a test folder: `mkdir -p ~/study/linux-basics`. Navigate into it with `cd ~/study/linux-basics`. Create an empty file called `notes.txt` using `touch notes.txt`."
+    },
+    "12": {
+      "title": "Viewing & Editing Files in Linux",
+      "category": "Linux",
+      "concept": "Hacking often requires editing config files or reading scripts. Useful tools: `cat` (print file), `head`/`tail` (print start/end of file), `nano` (simple terminal text editor), and `vim` (advanced text editor).",
+      "study_material": "Search: 'How to use Nano editor' or 'Vim basics'.",
+      "practical_challenge": "Edit your notes file: `nano notes.txt`. Type: 'Hacking is a mindset.' Save the file (Ctrl+O, Enter, Ctrl+X). Then view it in terminal using `cat notes.txt`."
+    },
+    "13": {
+      "title": "Linux File Permissions (chmod / chown)",
+      "category": "Linux",
+      "concept": "Every file in Linux has permissions for: User (owner), Group, and Others. Permissions are Read (4), Write (2), and Execute (1). For example, `chmod 755 script.sh` gives the owner full access (4+2+1=7) and others read/execute (4+1=5).",
+      "study_material": "Search: 'Linux file permissions octal representation' or watch 'chmod explained'.",
+      "practical_challenge": "Run `ls -l notes.txt`. Note the permissions string (e.g., `-rw-r--r--`). Change permissions so ONLY you can read and write it: `chmod 600 notes.txt`. Run `ls -l notes.txt` again to verify."
+    },
+    "14": {
+      "title": "Wildcards, Grep & Pipelines",
+      "category": "Linux",
+      "concept": "Linux lets you chain commands using pipe `|`. The output of command A becomes the input of command B. `grep` is a powerful tool to search text for patterns. Wildcard `*` matches any characters.",
+      "study_material": "Search: 'Linux pipes and redirection tutorial' or 'Grep commands guide'.",
+      "practical_challenge": "Run: `ls /etc | grep net`. This lists all files in the system configuration folder `/etc` that contain the word 'net'."
+    },
+    "15": {
+      "title": "Understanding Linux Users, Groups & Sudo",
+      "category": "Linux",
+      "concept": "Linux has standard users and one superuser: `root` (admin). The `sudo` command executes a command as the root user. Privilege escalation is when a hacker gains root access from a standard user account.",
+      "study_material": "Search: 'What is sudo root in Linux' or watch 'Linux users and groups tutorial'.",
+      "practical_challenge": "Run `whoami` to see your current user. Then run `id` to see what security groups your user account belongs to."
+    },
+    "16": {
+      "title": "Processes & Package Managers",
+      "category": "Linux",
+      "concept": "A process is a running program. Learn `ps aux` (list all running processes), `top` (interactive task manager), and `kill` (terminate process). Linux installs software using package managers like `apt` (Debian/Ubuntu) or `brew` (macOS).",
+      "study_material": "Search: 'Linux process management commands' or 'apt-get vs brew'.",
+      "practical_challenge": "Run `ps aux | grep Terminal` to find the process ID (PID) of your terminal app. Observe the columns returned (User, PID, CPU, Memory)."
+    },
+    "17": {
+      "title": "Environment Variables & Paths",
+      "category": "Linux",
+      "concept": "Linux uses variables to store configurations. The `$PATH` variable lists the folders where the terminal searches for commands. When you type `nmap`, the shell looks through each folder in `$PATH` to find the executable.",
+      "study_material": "Search: 'Linux PATH variable explained' or watch 'echo PATH variables'.",
+      "practical_challenge": "Run: `echo $PATH`. See the folders separated by colons. Run `which ls` to find the exact location of the list directory executable."
+    },
+    "18": {
+      "title": "Introduction to Bash Scripting",
+      "category": "Linux",
+      "concept": "Bash scripts automate terminal tasks. They start with a 'shebang' line: `#!/bin/bash`. You can use variables, loops, and conditions to make powerful automation scripts (like port scanners or backup routines).",
+      "study_material": "Search: 'Bash scripting for beginners' or watch a simple bash script tutorial.",
+      "practical_challenge": "Create a file `hello.sh` and write: `#!/bin/bash\\necho \"Hello H4cker!\"`. Save it, make it executable with `chmod +x hello.sh`, and run it with `./hello.sh`."
+    },
+    "19": {
+      "title": "Linux Networking Commands",
+      "category": "Linux",
+      "concept": "As a hacker, you need to query network configurations. Use: `ip a` (list interfaces), `route -n` (routing table), `netstat` (active connections), and `traceroute` (trace path packets take to a host).",
+      "study_material": "Search: 'Linux network troubleshooting commands' or watch 'traceroute explained'.",
+      "practical_challenge": "Run: `traceroute google.com`. Look at the hops (routers) your packets pass through. Note how the response times increase the further they go."
+    },
+    "20": {
+      "title": "SSH (Secure Shell) Key Authentication",
+      "category": "Linux",
+      "concept": "SSH connects you securely to remote Linux servers (like a cloud hacking lab). SSH keys are much more secure than passwords. They consist of a public key (uploaded to the server) and a private key (kept secret on your machine).",
+      "study_material": "Search: 'How to generate SSH keys' or watch 'SSH authentication keys tutorial'.",
+      "practical_challenge": "Generate a test SSH key pair in your Terminal: `ssh-keygen -t ed25519 -f ~/study/linux-basics/test_key`. Read the public key using `cat ~/study/linux-basics/test_key.pub`."
+    },
+    "21": {
+      "title": "Python Scripting Fundamentals",
+      "category": "Python",
+      "concept": "Python is the primary programming language for hackers because it is easy to read, write, and run. You write a script, and the Python interpreter executes it line by line. Variables, loops (`for`, `while`), and functions are the building blocks.",
+      "study_material": "Search: 'Python basics for cybersecurity' or watch a Python intro.",
+      "practical_challenge": "Run python interactively in terminal: `python3`. Type `print(\"Ready to hack\")`. Press Ctrl+D to exit."
+    },
+    "22": {
+      "title": "Working with Lists & Dictionaries in Python",
+      "category": "Python",
+      "concept": "Data collection is crucial in scripts. Lists are ordered sequences: `ports = [22, 80, 443]`. Dictionaries store key-value pairs: `services = {22: 'ssh', 80: 'http'}`. You can iterate over them to build scanners.",
+      "study_material": "Search: 'Python lists and dictionaries tutorial' or 'Iterating through data structures'.",
+      "practical_challenge": "Write a python line: `for port in [22, 80, 443]: print(f\"Scanning port {port}...\")`."
+    },
+    "23": {
+      "title": "Python Requests Library (Web Automation)",
+      "category": "Python",
+      "concept": "The `requests` library lets you send HTTP requests in Python code. You can fetch HTML, submit forms, download files, and scrape websites for information (like scanning a web app for open paths).",
+      "study_material": "Search: 'Python requests library tutorial' or watch 'How to query APIs in Python'.",
+      "practical_challenge": "Try running a python script to get a web response: `python3 -c \"import requests; r = requests.get('https://httpbin.org/get'); print(r.status_code); print(r.json())\"`."
+    },
+    "24": {
+      "title": "Creating a Banner Grabber in Python",
+      "category": "Python",
+      "concept": "A 'banner grabber' connects to a port and reads the welcome message sent by the service. This helps identify the service software and version (e.g. SSH-2.0-OpenSSH_8.2p1) to find matching CVE vulnerabilities.",
+      "study_material": "Search: 'Python socket programming banner grabbing' or watch 'Python sockets tutorial'.",
+      "practical_challenge": "Read about the `socket` library. Sockets are how Python opens network connections. You connect to an IP on a specific port and use `socket.recv()` to read the banner."
+    },
+    "25": {
+      "title": "Building a Basic Port Scanner in Python",
+      "category": "Python",
+      "concept": "A port scanner tries to open connections to a range of ports on a target IP. If the socket connects successfully, the port is open! Python makes writing a simple, fast multi-port scanner very straightforward.",
+      "study_material": "Search: 'Build a port scanner in Python' or watch a video on socket port scanning.",
+      "practical_challenge": "Look at Python socket examples. A connection check uses `socket.connect_ex((ip, port))`. If it returns `0`, the port is open!"
+    },
+    "26": {
+      "title": "Parsing Command Line Arguments (sys.argv)",
+      "category": "Python",
+      "concept": "Command line tools require inputs (like target IP, scanning speed). In Python, `sys.argv` is a list containing the arguments passed to the script. For example, in `python3 scan.py 192.168.1.1`, `sys.argv[1]` is the IP address.",
+      "study_material": "Search: 'Python command line arguments sys argv' or 'Python argparse tutorial'.",
+      "practical_challenge": "Run in Terminal: `python3 -c \"import sys; print(f'Target IP is: {sys.argv[1]}')\" 192.168.1.15`."
+    },
+    "27": {
+      "title": "File Handling in Python",
+      "category": "Python",
+      "concept": "Security tools need to read wordlists (e.g., lists of default passwords or directories) and save output logs. Python handles files using `open('filename', 'r')` for reading and `open('filename', 'w')` for writing.",
+      "study_material": "Search: 'Python reading and writing files' or 'Python with statement file handling'.",
+      "practical_challenge": "Run a python script to write to a file: `python3 -c \"with open('targets.txt', 'w') as f: f.write('192.168.1.1\\\\n192.168.1.2')\"`. View it using `cat targets.txt`."
+    },
+    "28": {
+      "title": "Exception Handling in Python (try/except)",
+      "category": "Python",
+      "concept": "When scanning networks, errors are common (host down, connection refused). If your script encounters an error, it will crash. Using `try` and `except` blocks lets your script handle these issues gracefully and keep running.",
+      "study_material": "Search: 'Python try except blocks' or 'Python error handling guide'.",
+      "practical_challenge": "Try running: `python3 -c \"try: print(10/0)\\nexcept ZeroDivisionError: print('Cannot divide by zero!')\"`."
+    },
+    "29": {
+      "title": "Introduction to Scapy (Packet Manipulation)",
+      "category": "Python",
+      "concept": "Scapy is a powerful Python library that lets you send, sniff, dissect, and forge network packets. Hackers use Scapy to write custom Wi-Fi scanners, ARP spoofers, traceroutes, or custom firewall testers.",
+      "study_material": "Search: 'Scapy python packet crafting' or watch 'Scapy tutorial for beginners'.",
+      "practical_challenge": "Look at Scapy documentation. In Scapy, creating a packet is as simple as: `packet = IP(dst='192.168.1.1')/TCP(dport=80)`."
+    },
+    "30": {
+      "title": "Review & Building Your First Hacking Script",
+      "category": "Python",
+      "concept": "You have covered Networking, Linux navigation, and Python scripting! For your final day, combine these skills to write a small script that reads a list of IPs, pings them to check if they are up, and logs the active hosts to a file.",
+      "study_material": "Search: 'Simple host ping sweep script in Python'.",
+      "practical_challenge": "Reflect on your 30-day journey. You now have the exact technical foundation to start labs on TryHackMe or build virtual hacking networks!"
+    }
+  }
+}
