@@ -29,8 +29,8 @@ jobs:
 
       - name: Commit Progress Update
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "triptiV1"
+          git config --global user.email "163966194+triptiV1@users.noreply.github.com"
           git add progress.json
           git commit -m "chore: advance study plan to next day" || exit 0
           git push
