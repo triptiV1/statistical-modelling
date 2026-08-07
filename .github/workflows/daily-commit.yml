@@ -1,36 +1,27 @@
-name: Daily Study Planner & Commit
+name: Daily Commit
 
 on:
   schedule:
     - cron: '0 16 * * *' # Runs daily at 16:00 UTC (approx. 09:00 AM local PT)
-  workflow_dispatch: # Allows manual trigger from the Actions tab
+  workflow_dispatch:
 
 jobs:
-  daily-task:
+  commit:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      issues: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Generate Issue Content
+      - name: Make Daily Update
         run: |
-          python3 generate_issue_body.py
-
-      - name: Create GitHub Issue
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          TITLE=$(cat issue_title.txt)
-          gh issue create --title "$TITLE" --body-file issue_body.txt
-          rm issue_title.txt issue_body.txt
-
-      - name: Commit Progress Update
+          echo "Last daily update: $(date -u)" > daily_contribution.txt
+          
+      - name: Commit and Push
         run: |
           git config --global user.name "triptiV1"
           git config --global user.email "163966194+triptiV1@users.noreply.github.com"
-          git add progress.json
-          git commit -m "chore: advance study plan to next day" || exit 0
+          git add daily_contribution.txt
+          git commit -m "chore: daily automatic contribution $(date +'%Y-%m-%d')" || exit 0
           git push
